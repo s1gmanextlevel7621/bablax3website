@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bablax Countdown</title>
+    <title>Bablax - Premium Roblox Executor</title>
+    <link rel="stylesheet" href="styles.css">
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -15,10 +16,21 @@
             justify-content: center;
             align-items: center;
             height: 100vh;
+            margin: 0;
         }
-        h1 {
-            font-size: 3rem;
+        .hero {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .logo {
+            font-size: 2rem;
+            font-weight: bold;
             margin-bottom: 10px;
+        }
+        .tagline {
+            font-size: 1.5rem;
+            margin-bottom: 20px;
         }
         #countdown {
             font-size: 2rem;
@@ -26,19 +38,46 @@
             background: red;
             padding: 10px 20px;
             border-radius: 10px;
+            margin-top: 20px;
+        }
+        .executor-preview img {
+            width: 200px;
+            height: auto;
+            margin-top: 20px;
         }
     </style>
 </head>
 <body>
-    <h1>Bablax Executor</h1>
-    <div id="countdown"></div>
-    <p>Coming out 3 March 2031</p>
+    <header>
+        <nav>
+            <div class="logo">Bablax</div>
+        </nav>
+    </header>
+
+    <main>
+        <section id="home" class="hero">
+            <div class="hero-content">
+                <h1>Bablax</h1>
+                <p class="tagline">The Ultimate Roblox Executor</p>
+                <div class="executor-preview">
+                    <img src="OIP (19).jpg" alt="Bablax Executor" class="interactive-image">
+                </div>
+                <div id="countdown"></div>
+                <p>Coming out 5 March 2025</p>
+            </div>
+        </section>
+    </main>
 
     <script>
         function updateCountdown() {
-            const releaseDate = new Date("March 3, 2031 00:00:00").getTime();
+            const releaseDate = new Date("March 5, 2025 00:00:00").getTime();
             const now = new Date().getTime();
             const timeLeft = releaseDate - now;
+
+            if (timeLeft <= 0) {
+                document.getElementById("countdown").innerHTML = "Released!";
+                return;
+            }
 
             const days = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
             const hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
@@ -47,10 +86,6 @@
 
             document.getElementById("countdown").innerHTML = 
                 `${days}d ${hours}h ${minutes}m ${seconds}s`;
-
-            if (timeLeft <= 0) {
-                document.getElementById("countdown").innerHTML = "Released!";
-            }
         }
 
         setInterval(updateCountdown, 1000);
