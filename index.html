@@ -1,19 +1,60 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<title>Page Title</title>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<style>
-body {
-  font-family: Arial, Helvetica, sans-serif;
-}
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bablax Countdown</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: black;
+            color: white;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        h1 {
+            font-size: 3rem;
+            margin-bottom: 10px;
+        }
+        #countdown {
+            font-size: 2rem;
+            font-weight: bold;
+            background: red;
+            padding: 10px 20px;
+            border-radius: 10px;
+        }
+    </style>
 </head>
 <body>
+    <h1>Bablax Executor</h1>
+    <div id="countdown"></div>
+    <p>Coming out 3 March 2031</p>
 
-<h1>My Website</h1>
-<p>A website created by me.</p>
+    <script>
+        function updateCountdown() {
+            const releaseDate = new Date("March 3, 2031 00:00:00").getTime();
+            const now = new Date().getTime();
+            const timeLeft = releaseDate - now;
 
+            const days = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
+
+            document.getElementById("countdown").innerHTML = 
+                `${days}d ${hours}h ${minutes}m ${seconds}s`;
+
+            if (timeLeft <= 0) {
+                document.getElementById("countdown").innerHTML = "Released!";
+            }
+        }
+
+        setInterval(updateCountdown, 1000);
+        updateCountdown(); 
+    </script>
 </body>
 </html>
